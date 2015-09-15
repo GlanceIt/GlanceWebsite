@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1.
+        Spot List
+    ul
+        each spot, i in spot_list
+            li
+                a(href="/spots/#{spot.name}")= spot.name
+                p Wifi: #{spot.aspects.Wifi}
+                p Staff: #{spot.aspects.Staff}
+                p Coffee: #{spot.aspects.Coffee}
