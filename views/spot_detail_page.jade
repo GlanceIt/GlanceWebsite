@@ -1,8 +1,12 @@
 extends layout
 
 block content
+    a(href="#{spot_details.Image}")= "Image"
+    p ====
     h2.
         #{spot_details.name}
+    p Address: #{spot_details.address.Street}, #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
+    p Overall: #{spot_details.aspects.Overall}
     p Wifi: #{spot_details.aspects.Wifi}
     p Staff: #{spot_details.aspects.Staff}
     p Coffee: #{spot_details.aspects.Coffee}

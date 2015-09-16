@@ -7,6 +7,8 @@ block content
         each spot, i in spot_list
             li
                 a(href="/spots/#{spot.name}")= spot.name
+                p Address: #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
+                p Overall: #{spot.aspects.Overall}
                 p Wifi: #{spot.aspects.Wifi}
                 p Staff: #{spot.aspects.Staff}
                 p Coffee: #{spot.aspects.Coffee}
