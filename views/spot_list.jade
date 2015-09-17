@@ -1,14 +1,55 @@
 extends layout
 
 block content
-    h1.
-        Spot List
-    ul
-        each spot, i in spot_list
-            li
-                a(href="/spots/#{spot.name}")= spot.name
-                p Address: #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
-                p Overall: #{spot.aspects.Overall}
-                p Wifi: #{spot.aspects.Wifi}
-                p Staff: #{spot.aspects.Staff}
-                p Coffee: #{spot.aspects.Coffee}
+    .hero
+        #map-canvas.map-canvas
+
+    #discover-container
+        .container
+            .section-title.text-center.spacing-6.spacing-top-8
+                h1 Irvine
+            .search-results
+                .listing-container
+                    .row
+                        each spot, i in spot_list
+                            .col-sm-12.spacing-2.col-md-6
+                                .spot(data-lat='', data-long='', data-name='#{spot.name}', data-url='/spots/#{spot.name}', data-user='', data-id='', data-img='#{spot.Image}')
+                                    .panel-image.spot-image
+                                        .spot-description(data-id='')
+                                            .summary
+                                                p
+                                                a(href="/spots/#{spot.name}")= spot.name
+                                            p.address #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
+                                            .details
+                                                .row
+                                                    p Overall: 
+                                                        strong #{spot.aspects.Overall}
+                                                    p Wifi: 
+                                                        strong #{spot.aspects.Wifi}
+                                                    p Staff: 
+                                                        strong #{spot.aspects.Staff}
+                                                    p Coffee: 
+                                                        strong #{spot.aspects.Coffee}
+                                        a.media-phot.media-cover(href='/spots/#{spot.name}', target='listing_id')
+                                            .spot-image-container.media-cover.text-center
+                                                img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
+                                    .panel-body.panel-card-section
+                                        .media
+                                            h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
+                                                a.text-normal(href='/spots/#{spot.name}', target='listing_id') #{spot.name}
+                                            .text-muted.spot-location.text-truncate(itemprop='description')
+                                                a.text-normal.link-reset(href='/spots/#{spot.name}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
+                                                    small 
+                                                        .star-rating
+                                                            .foreground
+                                                                i.icon.fa.fa-star.icon-beach
+                                                                i.icon.fa.fa-star.icon-beach
+                                                                i.icon.fa.fa-star.icon-beach
+                                                            .background
+                                                                i.icon.fa.fa-star.icon-light-gray
+                                                                i.icon.fa.fa-star.icon-light-gray
+                                                                i.icon.fa.fa-star.icon-light-gray
+                                                                i.icon.fa.fa-star.icon-light-gray
+                                                                i.icon.fa.fa-star.icon-light-gray
+
+    script(type='text/javascript', src='javascripts/maps.js')

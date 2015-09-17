@@ -1,0 +1,91 @@
+.pull-left { float: left; }
+.pull-right { float: right; }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.text-muted { color: #82888a; }
+
+.text-light-gray, .icon-light-gray { color: #cacccd; }
+
+.text-beach, .icon-beach { color: #f5a623; }
+
+.text-truncate {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.text-normal, a.text-normal, a.text-normal:hover, a.text-normal:focus { color: inherit; }
+
+.link-reset:hover, .link-icon:hover, .link-reset:focus, .link-icon:focus, .link-reset:active, .link-icon:active { 
+	color: inherit;
+	outline: none;
+	text-decoration: none;
+}
+
+.spacing-1 { margin-bottom: 6.25px; }
+.spacing-2 { margin-bottom: 12.5px; }
+.spacing-3 { margin-bottom: 18.75px; }
+.spacing-4 { margin-bottom: 25px; }
+.spacing-5 { margin-bottom: 31.25px; }
+.spacing-6 { margin-bottom: 37.5px; }
+.spacing-7 { margin-bottom: 43.75px; }
+.spacing-8 { margin-bottom: 50px; }
+.spacing-9 { margin-bottom: 56.25px; }
+.spacing-10 { margin-bottom: 62.5px; }
+
+.spacing-top-1 { margin-top: 6.25px; }
+.spacing-top-2 { margin-top: 12.5px; }
+.spacing-top-3 { margin-top: 18.75px; }
+.spacing-top-4 { margin-top: 25px; }
+.spacing-top-5 { margin-top: 31.25px; }
+.spacing-top-6 { margin-top: 37.5px; }
+.spacing-top-7 { margin-top: 43.75px; }
+.spacing-top-8 { margin-top: 50px; }
+.spacing-top-9 { margin-top: 56.25px; }
+.spacing-top-10 { margin-top: 62.5px; }
+
+.col-1, .col-sm-1, .col-md-1, .col-lg-1, .col-2, .col-sm-2, .col-md-2, .col-lg-2, .col-3, .col-sm-3, .col-md-3, .col-lg-3, .col-4, .col-sm-4, .col-md-4, .col-lg-4, .col-5, .col-sm-5, .col-md-5, .col-lg-5, .col-6, .col-sm-6, .col-md-6, .col-lg-6, .col-7, .col-sm-7, .col-md-7, .col-lg-7, .col-8, .col-sm-8, .col-md-8, .col-lg-8, .col-9, .col-sm-9, .col-md-9, .col-lg-9, .col-10, .col-sm-10, .col-md-10, .col-lg-10, .col-11, .col-sm-11, .col-md-11, .col-lg-11, .col-12, .col-sm-12, .col-md-12, .col-lg-12 {
+	position: relative;
+	min-height: 1px;
+	padding-left: 12.5px;
+	padding-right: 12.5px;
+}
+
+.col-sm-12 {
+	width: 100%;
+	float: left;
+}
+
+.image-responsive-height {
+	width: auto;
+	height: 100%;
+}
+
+.image-responsive-width {
+	width: 100%;
+	height: auto;
+}
+
+.row { width: 100%; }
+.row:after, .row:before {
+	display: table;
+	content: "";
+	line-height: 0;
+	font-size: 0;
+}
+.row:after { clear: both; }
+
+.clearfix:before, .clearfix:after { 
+	content: " ";
+	display: table;
+}
+
+@media (min-width: 768px) {
+	.col-md-6 {
+		width: 50%;
+		float: left;
+	}
+}
