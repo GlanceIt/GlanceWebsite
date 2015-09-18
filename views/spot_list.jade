@@ -23,13 +23,13 @@ block content
                                             .details
                                                 .row
                                                     p Overall: 
-                                                        strong #{spot.aspects.Overall}
+                                                        strong #{spot.aspects.Overall.rating}
                                                     p Wifi: 
-                                                        strong #{spot.aspects.Wifi}
+                                                        strong #{spot.aspects.Wifi.rating}
                                                     p Staff: 
-                                                        strong #{spot.aspects.Staff}
+                                                        strong #{spot.aspects.Staff.rating}
                                                     p Coffee: 
-                                                        strong #{spot.aspects.Coffee}
+                                                        strong #{spot.aspects.Coffee.rating}
                                         a.media-phot.media-cover(href='/spots/#{spot.name}', target='listing_id')
                                             .spot-image-container.media-cover.text-center
                                                 img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
@@ -39,17 +39,45 @@ block content
                                                 a.text-normal(href='/spots/#{spot.name}', target='listing_id') #{spot.name}
                                             .text-muted.spot-location.text-truncate(itemprop='description')
                                                 a.text-normal.link-reset(href='/spots/#{spot.name}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
-                                                    small 
-                                                        .star-rating
-                                                            .foreground
-                                                                i.icon.fa.fa-star.icon-beach
-                                                                i.icon.fa.fa-star.icon-beach
-                                                                i.icon.fa.fa-star.icon-beach
-                                                            .background
-                                                                i.icon.fa.fa-star.icon-light-gray
-                                                                i.icon.fa.fa-star.icon-light-gray
-                                                                i.icon.fa.fa-star.icon-light-gray
-                                                                i.icon.fa.fa-star.icon-light-gray
-                                                                i.icon.fa.fa-star.icon-light-gray
+                                                small 
+                                                    .star-rating
+                                                        .foreground
+                                                            - var wholeStars = Math.floor(spot.aspects.Overall.rating)
+                                                            - var remainder = spot.aspects.Overall.rating % 1
+                                                            - var hasHalfStar = false
+                                                            -
+                                                                if (remainder > 0 && remainder < 0.3) {
+                                                                    hasHalfStar = false
+                                                                }
+                                                                else if (remainder >= 0.3 && remainder <= 0.7) {
+                                                                    hasHalfStar = true
+                                                                }
+                                                                else if (remainder > 0.7) {
+                                                                    hasHalfStar = false
+                                                                    wholeStars++
+                                                                }
+                                                            
+                                                            -   for (var counter = 0; counter < 5; counter++) {
+                                                            -       if (counter < wholeStars) {
+                                                                        i.icon.fa.fa-star.icon-beach   
+                                                            -       }
+                                                            -       else if (hasHalfStar) {
+                                                                        i.icon.fa.fa-star-half-o.icon-beach 
+                                                            -           hasHalfStar = false
+                                                            -       }
+                                                            -       else {
+                                                                        i.icon.fa.fa-star-o.icon-beach 
+                                                            -       }
+                                                            -   }
+                                                            //- - for (var x = 0; x < wholeStars; x++)
+                                                            //-     i.icon.fa.fa-star.icon-beach
+                                                            //- - if (hasHalfStar)
+                                                            //-     i.icon.fa.fa-star-half.icon-beach
+                                                        //- .background
+                                                        //-     i.icon.fa.fa-star.icon-light-gray
+                                                        //-     i.icon.fa.fa-star.icon-light-gray
+                                                        //-     i.icon.fa.fa-star.icon-light-gray
+                                                        //-     i.icon.fa.fa-star.icon-light-gray
+                                                        //-     i.icon.fa.fa-star.icon-light-gray
 
     script(type='text/javascript', src='javascripts/maps.js')

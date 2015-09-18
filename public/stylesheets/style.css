@@ -39,6 +39,12 @@ h1, .h1, h2, .h2, h3, .h3 { font-weight: normal; }
 
 h4, .h4, h5, .h5, h6, .h6 { font-weight: bold; }
 
+ul, ol {
+	margin-top: 0;
+	margin-bottom: 15px;
+	padding-left: 25px;
+}
+
 img { 
 	border: 0;
 	vertical-align: middle; 
@@ -109,11 +115,16 @@ a.logo-link:hover { color: #f5a623; }
 	background-color: #f5a623;
 }
 
-.container {
+.container, .container-responsive {
 	width: auto;
 	margin: 0 auto;
-	padding-left: 25px;
-	padding-right: 25px;
+	padding-left: 12.5px;
+	padding-right: 12.5px;
+}
+
+.container:before, .container-responsive:before, .container:after, .container-responsive:after {
+	content: " ";
+	display: table;
 }
 
 .panel-image { position: relative; }
@@ -182,7 +193,7 @@ h3.spot-name { margin: 6.25px 0 0; }
 	position: relative;
 }
 
-.star-rating .foreground { position: absolute; }
+/*.star-rating .foreground { position: absolute; }*/
 
 .icon {
 	font-style: normal;
@@ -199,6 +210,53 @@ h3.spot-name { margin: 6.25px 0 0; }
 
 .star-rating .icon { padding: 2px; }
 
+.glance-footer {
+	/*height: 600px;*/
+	padding: 50px 0;
+	background-image: url('../images/footer-background-1.png');
+	background-color: #2b2d2e;
+	color: #fff;
+}
+
+.list-unstyled, .list-layout, .subnav-list, .sidenav-list {
+	padding-left: 0;
+	list-style: none;
+}
+
+.list-layout, .subnav-list, .sidenav-list { margin-bottom: 0; }
+
+.list-inline {
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+.list-inline li {
+	padding: 0 5px;
+	display: inline-block;
+}
+
+.border-translucent, .footer-divider, .footer-icon-container {
+	border-color: #aaa;
+	border-color: rgba(255,255,255,0.2);
+}
+
+.footer-icon-container {
+	display: block;
+	height: 36px;
+	width: 36px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.footer-icon { position: relative; }
+
+.footer-icon.fa-facebook, .footer-icon.fa-pinterest, .footer-icon.fa-twitter, .footer-icon.fa-instagram {
+	top: 7px;
+	left: 0;
+}
+
 @media (min-width: 768px) {
 	.logo-link {
 		display: block;
@@ -207,9 +265,14 @@ h3.spot-name { margin: 6.25px 0 0; }
 
 	.hero { height: 500px; }
 
-	.container { width: 745px; } 
+	.container, .container-responsive  { width: 745px; } 
+
+	.container, .container-responsive  { 
+		padding-left: 25px; 
+		padding-right: 25px;
+	} 
 }
 
 @media (min-width: 1100px) {
-	.container { width: 1045px; } 
+	.container, .container-responsive  { width: 1045px; } 
 }

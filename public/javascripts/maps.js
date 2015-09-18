@@ -43,7 +43,7 @@ google.maps.event.addDomListener(window, 'resize', function() {
 	map.setCenter(mapCenter);
 });
 
-function getGeolocationSuccess(position) {
+function geolocationSuccess(position) {
 	mapCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	map.setCenter(mapCenter);
 

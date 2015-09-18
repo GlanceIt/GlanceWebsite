@@ -6,8 +6,8 @@ block content
     h2.
         #{spot_details.name}
     p Address: #{spot_details.address.Street}, #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
-    p Overall: #{spot_details.aspects.Overall}
-    p Wifi: #{spot_details.aspects.Wifi}
-    p Staff: #{spot_details.aspects.Staff}
-    p Coffee: #{spot_details.aspects.Coffee}
+    p Overall: #{spot_details.aspects.Overall.rating}
+    p Wifi: #{spot_details.aspects.Wifi.rating}
+    p Staff: #{spot_details.aspects.Staff.rating}
+    p Coffee: #{spot_details.aspects.Coffee.rating}
     a(href="/spotlist")= "< Spot List"
