@@ -9,6 +9,7 @@ function initialize() {
 	mapCenter = new google.maps.LatLng(33.6694, -117.8231);
 
 	var mapOptions = {
+		scrollwheel: false,
 		center: mapCenter,
 	    streetViewControl: false,
 	    zoom: 14,
@@ -52,7 +53,7 @@ function geolocationSuccess(position) {
 	// var infowindow = new google.maps.InfoWindow();
 
 	// infowindow.setContent("You are here, or somewhere thereabouts.");
-	// infowindow.setPosition(location);
+	// infowindow.setPosition(position.coords);
 	// infowindow.open(map);
 
 	results.innerHTML = "Now you are on the map";

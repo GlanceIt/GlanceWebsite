@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+    head
+        block head
+            include ../includes/head.jade
+
+    body.v1
+        block header
+            include ../includes/header.jade
+
+        main#site-content.glance-main(role='main')
+            block content
+
+        block footer
+            include ../includes/footer.jade
+
+        block scripts
+            include ../includes/scripts.jade

@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Glance' });
+  res.render('index', { title: 'Glance | Find your favorite Spot at a glance!' });
 });
 
 /* GET Spotlist page. */
@@ -12,7 +12,8 @@ router.get('/spotlist', function(req, res) {
     var collection = db.get('spotcollection');
     collection.find({},{},function(e,docs){
         res.render('spot_list', {
-            "spot_list" : docs
+            "spot_list" : docs,
+            title : 'Glance | Find your favorite Spot at a glance!'
         });
     });
 });

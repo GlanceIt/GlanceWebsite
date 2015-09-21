@@ -1,0 +1,28 @@
+mixin stars(overallRating)
+	- var wholeStars = Math.floor(overallRating)
+	- var remainder = overallRating % 1
+	- var hasHalfStar = false
+	-
+		if (remainder > 0 && remainder < 0.3) {
+			hasHalfStar = false
+		}
+		else if (remainder >= 0.3 && remainder <= 0.7) {
+			hasHalfStar = true
+		}
+		else if (remainder > 0.7) {
+			hasHalfStar = false
+			wholeStars++
+		}
+
+	-	for (var counter = 0; counter < 5; counter++) {
+	-		if (counter < wholeStars) {
+				i.icon.fa.fa-star.icon-beach   
+	-   	}
+	-   	else if (hasHalfStar) {
+				i.icon.fa.fa-star-half-o.icon-beach 
+	-			hasHalfStar = false
+	-   	}
+	-   	else {
+				i.icon.fa.fa-star-o.icon-beach 
+	-   	}
+	- 	}

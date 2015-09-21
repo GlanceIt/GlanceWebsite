@@ -1,4 +1,10 @@
-extends layout
+extends ./layouts/layout
+
+include ./components/stars.jade
+
+append head
+    // Google maps
+    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js')
 
 block content
     .hero
@@ -42,33 +48,34 @@ block content
                                                 small 
                                                     .star-rating
                                                         .foreground
-                                                            - var wholeStars = Math.floor(spot.aspects.Overall.rating)
-                                                            - var remainder = spot.aspects.Overall.rating % 1
-                                                            - var hasHalfStar = false
-                                                            -
-                                                                if (remainder > 0 && remainder < 0.3) {
-                                                                    hasHalfStar = false
-                                                                }
-                                                                else if (remainder >= 0.3 && remainder <= 0.7) {
-                                                                    hasHalfStar = true
-                                                                }
-                                                                else if (remainder > 0.7) {
-                                                                    hasHalfStar = false
-                                                                    wholeStars++
-                                                                }
+                                                            +stars(spot.aspects.Overall.rating)
+                                                            //- - var wholeStars = Math.floor(spot.aspects.Overall.rating)
+                                                            //- - var remainder = spot.aspects.Overall.rating % 1
+                                                            //- - var hasHalfStar = false
+                                                            //- -
+                                                            //-     if (remainder > 0 && remainder < 0.3) {
+                                                            //-         hasHalfStar = false
+                                                            //-     }
+                                                            //-     else if (remainder >= 0.3 && remainder <= 0.7) {
+                                                            //-         hasHalfStar = true
+                                                            //-     }
+                                                            //-     else if (remainder > 0.7) {
+                                                            //-         hasHalfStar = false
+                                                            //-         wholeStars++
+                                                            //-     }
                                                             
-                                                            -   for (var counter = 0; counter < 5; counter++) {
-                                                            -       if (counter < wholeStars) {
-                                                                        i.icon.fa.fa-star.icon-beach   
-                                                            -       }
-                                                            -       else if (hasHalfStar) {
-                                                                        i.icon.fa.fa-star-half-o.icon-beach 
-                                                            -           hasHalfStar = false
-                                                            -       }
-                                                            -       else {
-                                                                        i.icon.fa.fa-star-o.icon-beach 
-                                                            -       }
-                                                            -   }
+                                                            //- -   for (var counter = 0; counter < 5; counter++) {
+                                                            //- -       if (counter < wholeStars) {
+                                                            //-             i.icon.fa.fa-star.icon-beach   
+                                                            //- -       }
+                                                            //- -       else if (hasHalfStar) {
+                                                            //-             i.icon.fa.fa-star-half-o.icon-beach 
+                                                            //- -           hasHalfStar = false
+                                                            //- -       }
+                                                            //- -       else {
+                                                            //-             i.icon.fa.fa-star-o.icon-beach 
+                                                            //- -       }
+                                                            //- -   }
                                                             //- - for (var x = 0; x < wholeStars; x++)
                                                             //-     i.icon.fa.fa-star.icon-beach
                                                             //- - if (hasHalfStar)
@@ -80,4 +87,5 @@ block content
                                                         //-     i.icon.fa.fa-star.icon-light-gray
                                                         //-     i.icon.fa.fa-star.icon-light-gray
 
-    script(type='text/javascript', src='javascripts/maps.js')
+append scripts
+    script(type='text/javascript', src='js/maps.js')

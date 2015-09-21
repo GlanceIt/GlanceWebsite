@@ -111,7 +111,7 @@ a.logo-link:hover { color: #f5a623; }
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: -1;
+	/*z-index: -1;*/
 	background-color: #f5a623;
 }
 
@@ -213,7 +213,7 @@ h3.spot-name { margin: 6.25px 0 0; }
 .glance-footer {
 	/*height: 600px;*/
 	padding: 50px 0;
-	background-image: url('../images/footer-background-1.png');
+	background-image: url('../img/footer-background-1.png');
 	background-color: #2b2d2e;
 	color: #fff;
 }
@@ -249,6 +249,8 @@ h3.spot-name { margin: 6.25px 0 0; }
 	border-radius: 50%;
 	text-align: center;
 }
+
+.footer-icon-container:hover { border-color: #ff9900;}
 
 .footer-icon { position: relative; }
 

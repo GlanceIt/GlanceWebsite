@@ -1,8 +1,8 @@
-extends layout
+extends ./layouts/layout
 
 block content
     a(href="#{spot_details.Image}")= "Image"
-    p ====
+    br
     h2.
         #{spot_details.name}
     p Address: #{spot_details.address.Street}, #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
