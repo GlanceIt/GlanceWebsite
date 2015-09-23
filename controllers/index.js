@@ -31,7 +31,8 @@ router.get('/spots/:spot', function(req, res) {
         }
 
         res.render('spot_detail_page', {
-            "spot_details" : docs
+            "spot_details" : docs,
+            title : spot
         });
     });
 });

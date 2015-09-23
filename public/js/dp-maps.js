@@ -3,19 +3,21 @@ var mapCanvas;
 var map;
 var mapCenter;
 var marker;
+var locationData;
 
 function initialize() {
 	mapCanvas = document.getElementById("map-canvas");
-	mapCenter = new google.maps.LatLng(33.6694, -117.8231);
+	locationData = document.getElementById("location-data");
+	mapCenter = new google.maps.LatLng(locationData.dataset.lat, locationData.dataset.lng);
 
 	var mapOptions = {
 		scrollwheel: false,
 		center: mapCenter,
 	    streetViewControl: false,
-	    zoom: 12,
+	    zoom: 14,
 	    backgroundColor: "#f5a623",
 	    disableDefaultUI: true,
-	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
 	map = new google.maps.Map(mapCanvas, mapOptions);
@@ -27,17 +29,15 @@ function initialize() {
 		animation: google.maps.Animation.DROP
 	});
 
-	setMarkers();
-
 	//***This grabs user location
-	results = document.getElementById("results");
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		results.innerHTML = "The Search has begun";
-	}
-	else {
-		results.innerHTML = "This browser does not support geolocation";
-	}
+	// results = document.getElementById("results");
+	// if (navigator.geolocation) {
+	// 	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
+	// 	results.innerHTML = "The Search has begun";
+	// }
+	// else {
+	// 	results.innerHTML = "This browser does not support geolocation";
+	// }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -74,30 +74,4 @@ function geolocationFailure(error) {
 	else {
 		results.innerHTML = "This the mystery error. Something else happened, but we don't know what.";
 	}
-}
-
-function setMarkers() {
-	// var markerImage = {
-	// 	url: '../img/icons/spot-location.png',
-	// 	size: new google.maps.Size(55, 55),
-	// 	origin: new google.maps.Point(0, 0),
-	// 	anchor: new google.maps.Point(0, 55)
-	// };
-
-
-	var spots = $(".spot");
-
-	spots.each(function(key, val) {
-		var locationName = $(this).data('name');
-		var spotMarker = new google.maps.Marker({
-			position: {lat: $(this).data('lat'), lng: $(this).data('lng')},
-			map: map,
-			title: locationName,
-			draggable: false,
-			animation: google.maps.Animation.DROP
-		});
-		spotMarker.addListener('click', function() {
-			window.open("/spots/" + locationName, "_self");
-		});
-	});
 }

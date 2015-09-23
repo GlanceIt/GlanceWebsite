@@ -1,13 +1,69 @@
 extends ./layouts/layout
 
+include ./components/stars.jade
+
+append head
+    // Google maps
+    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js')
+
 block content
-    a(href="#{spot_details.Image}")= "Image"
-    br
-    h2.
-        #{spot_details.name}
-    p Address: #{spot_details.address.Street}, #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
-    p Overall: #{spot_details.aspects.Overall.rating}
-    p Wifi: #{spot_details.aspects.Wifi.rating}
-    p Staff: #{spot_details.aspects.Staff.rating}
-    p Coffee: #{spot_details.aspects.Coffee.rating}
-    a(href="/spotlist")= "< Spot List"
+    .hero
+        #spot-hero.spot-hero(style="background-image: url('#{spot_details.Image}'); background-size: cover; background-position: center")
+        .overlay
+
+    .data-layer(style="display: none;")
+        ul
+            li#location-data.location-data(data-lat='#{spot_details.Location.coordinates[1]}', data-lng='#{spot_details.Location.coordinates[0]}', data-name='#{spot_details.name}')
+
+    #dp-container
+        #details
+            .container
+                .section-title.text-center.spacing-6.spacing-top-8
+                    h1 #{spot_details.name}
+                    .star-rating.spacing-3.text-2x
+                        span.icon-alt-text #{spot_details.aspects.Overall.rating} out of 5 stars
+                        +stars(spot_details.aspects.Overall.rating)
+                    hr
+
+                #aspect-ratings.aspect-ratings
+                    .ratings-container
+                        .row.spacing-2
+                            .col-sm-12.col-md-6
+                                .factor.text-2x.spacing-2
+                                    .row
+                                        .col-md-4
+                                            .factor-title Wifi
+                                        .col-md-8
+                                            .star-rating.text-md
+                                                span.icon-alt-text #{spot_details.aspects.Wifi.rating} out of 5 stars
+                                                +stars(spot_details.aspects.Wifi.rating)
+                                .factor.text-2x.spacing-2
+                                    .row
+                                        .col-md-4
+                                            .factor-title Staff 
+                                        .col-md-8
+                                            .star-rating.text-md
+                                                span.icon-alt-text #{spot_details.aspects.Staff.rating} out of 5 stars
+                                                +stars(spot_details.aspects.Staff.rating)
+
+                            .col-sm-12.col-md-6
+                                .factor.text-2x.spacing-2
+                                    .row
+                                        .col-md-4
+                                            .factor-title Coffee
+                                        .col-md-8
+                                            .star-rating.text-md
+                                                span.icon-alt-text #{spot_details.aspects.Coffee.rating} out of 5 stars
+                                                +stars(spot_details.aspects.Coffee.rating)
+
+        #spot-location.spot-location
+            .container(style="position: relative;")
+                #map-canvas.panel.map-canvas
+                #hover-card.hover-card.panel
+                    p.address.text-center.spacing-top-2.text-medium #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
+
+            
+            a(href="/spotlist")= "< Spot List"
+
+append scripts
+    script(type='text/javascript', src='/js/dp-maps.js')

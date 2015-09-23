@@ -19,73 +19,30 @@ block content
                     .row
                         each spot, i in spot_list
                             .col-sm-12.spacing-2.col-md-6
-                                .spot(data-lat='', data-long='', data-name='#{spot.name}', data-url='/spots/#{spot.name}', data-user='', data-id='', data-img='#{spot.Image}')
+                                .spot(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.name}', data-user='', data-id='', data-img='#{spot.Image}')
                                     .panel-image.spot-image
                                         .spot-description(data-id='')
                                             .summary
                                                 p
-                                                a(href="/spots/#{spot.name}")= spot.name
+                                                a(href="/spots/#{spot.name}") #{spot.name}
                                             p.address #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
                                             .details
                                                 .row
-                                                    p Overall: 
-                                                        strong #{spot.aspects.Overall.rating}
-                                                    p Wifi: 
-                                                        strong #{spot.aspects.Wifi.rating}
-                                                    p Staff: 
-                                                        strong #{spot.aspects.Staff.rating}
-                                                    p Coffee: 
-                                                        strong #{spot.aspects.Coffee.rating}
-                                        a.media-phot.media-cover(href='/spots/#{spot.name}', target='listing_id')
+                                                    each aspect, aspectTitle in spot.aspects
+                                                        p #{aspectTitle}: 
+                                                            strong #{aspect.rating}
+                                        a.media-phot.media-cover(href='/spots/#{spot.name}')
                                             .spot-image-container.media-cover.text-center
                                                 img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
                                     .panel-body.panel-card-section
                                         .media
                                             h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
-                                                a.text-normal(href='/spots/#{spot.name}', target='listing_id') #{spot.name}
+                                                a.text-normal(href='/spots/#{spot.name}') #{spot.name}
                                             .text-muted.spot-location.text-truncate(itemprop='description')
                                                 a.text-normal.link-reset(href='/spots/#{spot.name}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
                                                 small 
                                                     .star-rating
-                                                        .foreground
-                                                            +stars(spot.aspects.Overall.rating)
-                                                            //- - var wholeStars = Math.floor(spot.aspects.Overall.rating)
-                                                            //- - var remainder = spot.aspects.Overall.rating % 1
-                                                            //- - var hasHalfStar = false
-                                                            //- -
-                                                            //-     if (remainder > 0 && remainder < 0.3) {
-                                                            //-         hasHalfStar = false
-                                                            //-     }
-                                                            //-     else if (remainder >= 0.3 && remainder <= 0.7) {
-                                                            //-         hasHalfStar = true
-                                                            //-     }
-                                                            //-     else if (remainder > 0.7) {
-                                                            //-         hasHalfStar = false
-                                                            //-         wholeStars++
-                                                            //-     }
-                                                            
-                                                            //- -   for (var counter = 0; counter < 5; counter++) {
-                                                            //- -       if (counter < wholeStars) {
-                                                            //-             i.icon.fa.fa-star.icon-beach   
-                                                            //- -       }
-                                                            //- -       else if (hasHalfStar) {
-                                                            //-             i.icon.fa.fa-star-half-o.icon-beach 
-                                                            //- -           hasHalfStar = false
-                                                            //- -       }
-                                                            //- -       else {
-                                                            //-             i.icon.fa.fa-star-o.icon-beach 
-                                                            //- -       }
-                                                            //- -   }
-                                                            //- - for (var x = 0; x < wholeStars; x++)
-                                                            //-     i.icon.fa.fa-star.icon-beach
-                                                            //- - if (hasHalfStar)
-                                                            //-     i.icon.fa.fa-star-half.icon-beach
-                                                        //- .background
-                                                        //-     i.icon.fa.fa-star.icon-light-gray
-                                                        //-     i.icon.fa.fa-star.icon-light-gray
-                                                        //-     i.icon.fa.fa-star.icon-light-gray
-                                                        //-     i.icon.fa.fa-star.icon-light-gray
-                                                        //-     i.icon.fa.fa-star.icon-light-gray
+                                                        +stars(spot.aspects.Overall.rating)
 
 append scripts
-    script(type='text/javascript', src='js/maps.js')
+    script(type='text/javascript', src='/js/maps.js')

@@ -1,9 +1,18 @@
+.show-inline { display: inline-block; }
+
 .pull-left { float: left; }
 .pull-right { float: right; }
 
 .text-left { text-align: left; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
+
+.text-small { font-size: 0.85em; }
+.text-medium { font-size: 1.33333333em; }
+.text-2x { font-size: 2em; }
+.text-3x { font-size: 3em; }
+.text-4x { font-size: 4em; }
+.text-5x { font-size: 5em; }
 
 .text-muted { color: #82888a; }
 
@@ -105,8 +114,28 @@
 }
 
 @media (min-width: 768px) {
+	.col-md-9 {
+		width: 75%;
+		float: left;
+	}
+
+	.col-md-8 {
+		width: 66.66667%;
+		float: left;
+	}
+
 	.col-md-6 {
 		width: 50%;
+		float: left;
+	}
+
+	.col-md-4 {
+		width: 33.33333%;
+		float: left;
+	}
+
+	.col-md-3 {
+		width: 25%;
 		float: left;
 	}
 }
