@@ -24,22 +24,25 @@ block content
                                         .spot-description(data-id='')
                                             .summary
                                                 p
-                                                a(href="/spots/#{spot.name}") #{spot.name}
+                                                a(href="/spots/#{spot.index}") #{spot.name}
                                             p.address #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
                                             .details
                                                 .row
                                                     each aspect, aspectTitle in spot.aspects
                                                         p #{aspectTitle}: 
                                                             strong #{aspect.rating}
-                                        a.media-phot.media-cover(href='/spots/#{spot.name}')
+                                        a.media-phot.media-cover(href='/spots/#{spot.index}')
                                             .spot-image-container.media-cover.text-center
                                                 img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
                                     .panel-body.panel-card-section
                                         .media
                                             h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
-                                                a.text-normal(href='/spots/#{spot.name}') #{spot.name}
+                                                a.text-normal(href='/spots/#{spot.index}') #{spot.name}
+                                                - var distance = Number(spot.dist.calculated).toFixed(0)
+                                                | <br>
+                                                text-normal #{distance} meters
                                             .text-muted.spot-location.text-truncate(itemprop='description')
-                                                a.text-normal.link-reset(href='/spots/#{spot.name}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
+                                                a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
                                                 small 
                                                     .star-rating
                                                         +stars(spot.aspects.Overall.rating)
