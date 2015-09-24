@@ -25,15 +25,15 @@ router.get('/city/:city', function(req, res) {
     var collection = db.get('spotcollection');
     var city = req.params.city;
 
-    geocoder.geocode(city, function(err, result) {
-        getNearbySpots(collection, result, res);
+    geocoder.geocode(city, function(err, cityLoc) {
+        getNearbySpots(collection, cityLoc, res);
     });
 });
 
-function getNearbySpots(collection, result, res) {
+function getNearbySpots(collection, cityLoc, res) {
     collection.col.aggregate(
         [
-            {$geoNear: {near: {type: "Point", coordinates: [result[0].longitude, result[0].latitude]}, distanceField: "dist.calculated", num: 10, spherical: true}}
+            {$geoNear: {near: {type: "Point", coordinates: [cityLoc[0].longitude, cityLoc[0].latitude]}, distanceField: "dist.calculated", num: 10, spherical: true}}
         ],
         {}, function(e, docs){
         res.render('spot_list', {
