@@ -53,12 +53,7 @@ function geolocationSuccess(position) {
 
 	marker.setPosition(mapCenter);
 
-	// var infowindow = new google.maps.InfoWindow();
-
-	// infowindow.setContent("You are here, or somewhere thereabouts.");
-	// infowindow.setPosition(position.coords);
-	// infowindow.open(map);
-
+	// Debug
 	results.innerHTML = "Now you are on the map";
 }
 

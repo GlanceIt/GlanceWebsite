@@ -29,34 +29,6 @@ block content
                     .row
                         each spot, i in spot_list
                             +spotDisplay2(spot)
-                            //- .col-sm-12.spacing-2.col-md-6
-                            //-     .spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
-                            //-         .panel-image.spot-image
-                            //-             .spot-description(data-id='')
-                            //-                 .summary
-                            //-                     p
-                            //-                     a(href="/spots/#{spot.index}") #{spot.name}
-                            //-                 p.address #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
-                            //-                 .details
-                            //-                     .row
-                            //-                         each aspect, aspectTitle in spot.aspects
-                            //-                             p #{aspectTitle}: 
-                            //-                                 strong #{aspect.rating}
-                            //-             a.media-phot.media-cover(href='/spots/#{spot.index}')
-                            //-                 .spot-image-container.media-cover.text-center
-                            //-                     img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
-                            //-         .panel-body.panel-card-section
-                            //-             .media
-                            //-                 h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
-                            //-                     a.text-normal(href='/spots/#{spot.index}') #{spot.name}
-                            //-                     - var distance = Number(spot.dist.calculated).toFixed(0)
-                            //-                     | <br>
-                            //-                     text-normal #{distance} meters
-                            //-                 .text-muted.spot-location.text-truncate(itemprop='description')
-                            //-                     a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
-                            //-                     small 
-                            //-                         .star-rating
-                            //-                             +stars(spot.aspects.Overall.rating)
 
 append scripts
     script.

@@ -52,12 +52,6 @@ function geolocationSuccess(position) {
 
 	marker.setPosition(mapCenter);
 
-	// var infowindow = new google.maps.InfoWindow();
-
-	// infowindow.setContent("You are here, or somewhere thereabouts.");
-	// infowindow.setPosition(position.coords);
-	// infowindow.open(map);
-
 	results.innerHTML = "Now you are on the map";
 }
 
@@ -84,16 +78,34 @@ function setMarkers() {
 	// 	anchor: new google.maps.Point(0, 40)
 	// };
 
+	// var spots = $(".spot-data");
 
-	var spots = $(".spot-data");
+	// spots.each(function(key, val) {
+	// 	var locationName = $(this).data('name');
+	// 	var spotUrl = $(this).data('url');
+	// 	var spotMarker = new google.maps.Marker({
+	// 		position: {lat: $(this).data('lat'), lng: $(this).data('lng')},
+	// 		map: map,
+	// 		// icon: markerImage,
+	// 		icon: '../img/icons/spot-location.png',
+	// 		title: locationName,
+	// 		draggable: false,
+	// 		animation: google.maps.Animation.DROP
+	// 	});
+	// 	spotMarker.addListener('click', function() {
+	// 		window.open(spotUrl, "_self");
+	// 	});
+	// });
 
-	spots.each(function(key, val) {
-		var locationName = $(this).data('name');
-		var spotUrl = $(this).data('url');
+	var spots = document.getElementsByClassName('spot-data');
+
+	for (var i = 0; i < spots.length; i++) {
+		var locationName = spots.item(i).dataset.name;
+		var spotUrl = spots.item(i).dataset.url;
 		var spotMarker = new google.maps.Marker({
-			position: {lat: $(this).data('lat'), lng: $(this).data('lng')},
+			// position: new google.maps.LatLng(spots.item(i).dataset.lat, spots.item(i).dataset.lng),
+			position: {lat: parseFloat(spots.item(i).dataset.lat), lng: parseFloat(spots.item(i).dataset.lng)},
 			map: map,
-			// icon: markerImage,
 			icon: '../img/icons/spot-location.png',
 			title: locationName,
 			draggable: false,
@@ -102,5 +114,5 @@ function setMarkers() {
 		spotMarker.addListener('click', function() {
 			window.open(spotUrl, "_self");
 		});
-	});
+	}
 }
