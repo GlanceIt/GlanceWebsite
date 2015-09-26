@@ -20,19 +20,19 @@ function initialize() {
 
 	map = new google.maps.Map(mapCanvas, mapOptions);
 
-	marker = new google.maps.Marker({
-		position: mapCenter,
-		map: map,
-		draggable: true,
-		animation: google.maps.Animation.DROP
-	});
+	// marker = new google.maps.Marker({
+	// 	position: mapCenter,
+	// 	map: map,
+	// 	draggable: true,
+	// 	animation: google.maps.Animation.DROP
+	// });
 
 	setMarkers();
 
 	//***This grabs user location
 	results = document.getElementById("results");
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
+		//navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
 		results.innerHTML = "The Search has begun";
 	}
 	else {
@@ -79,25 +79,28 @@ function geolocationFailure(error) {
 function setMarkers() {
 	// var markerImage = {
 	// 	url: '../img/icons/spot-location.png',
-	// 	size: new google.maps.Size(55, 55),
+	// 	size: new google.maps.Size(40, 40),
 	// 	origin: new google.maps.Point(0, 0),
-	// 	anchor: new google.maps.Point(0, 55)
+	// 	anchor: new google.maps.Point(0, 40)
 	// };
 
 
-	var spots = $(".spot");
+	var spots = $(".spot-data");
 
 	spots.each(function(key, val) {
 		var locationName = $(this).data('name');
+		var spotUrl = $(this).data('url');
 		var spotMarker = new google.maps.Marker({
 			position: {lat: $(this).data('lat'), lng: $(this).data('lng')},
 			map: map,
+			// icon: markerImage,
+			icon: '../img/icons/spot-location.png',
 			title: locationName,
 			draggable: false,
 			animation: google.maps.Animation.DROP
 		});
 		spotMarker.addListener('click', function() {
-			window.open("/spots/" + locationName, "_self");
+			window.open(spotUrl, "_self");
 		});
 	});
 }

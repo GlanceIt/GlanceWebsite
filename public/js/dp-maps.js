@@ -7,7 +7,7 @@ var locationData;
 
 function initialize() {
 	mapCanvas = document.getElementById("map-canvas");
-	locationData = document.getElementById("location-data");
+	locationData = document.getElementById("spot-data");
 	mapCenter = new google.maps.LatLng(locationData.dataset.lat, locationData.dataset.lng);
 
 	var mapOptions = {
@@ -17,6 +17,7 @@ function initialize() {
 	    zoom: 14,
 	    backgroundColor: "#f5a623",
 	    disableDefaultUI: true,
+	    draggable: false,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 

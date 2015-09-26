@@ -1,51 +1,69 @@
 extends ./layouts/layout
 
 include ./components/stars.jade
+include ./components/spot_list_item.jade
 
 append head
+    script.
+        var breakpoint = 769;
+        var viewportWidth = window.innerWidth;
+        var hasMap = false;
+
+        if (viewportWidth > breakpoint) {
+            document.write('<script src="https://maps.googleapis.com/maps/api/js"><\/script>');
+            hasMap = true;
+        }
     // Google maps
-    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js')
+    //script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js')
 
 block content
-    .hero
+    #hero-container.hero
         #map-canvas.map-canvas
 
     #discover-container
         .container
-            .section-title.text-center.spacing-6.spacing-top-8
+            .section-title.text-center.spacing-6.spacing-top-6
                 h1 Irvine
             .search-results
                 .listing-container
                     .row
                         each spot, i in spot_list
-                            .col-sm-12.spacing-2.col-md-6
-                                .spot(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.name}', data-user='', data-id='', data-img='#{spot.Image}')
-                                    .panel-image.spot-image
-                                        .spot-description(data-id='')
-                                            .summary
-                                                p
-                                                a(href="/spots/#{spot.index}") #{spot.name}
-                                            p.address #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
-                                            .details
-                                                .row
-                                                    each aspect, aspectTitle in spot.aspects
-                                                        p #{aspectTitle}: 
-                                                            strong #{aspect.rating}
-                                        a.media-phot.media-cover(href='/spots/#{spot.index}')
-                                            .spot-image-container.media-cover.text-center
-                                                img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
-                                    .panel-body.panel-card-section
-                                        .media
-                                            h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
-                                                a.text-normal(href='/spots/#{spot.index}') #{spot.name}
-                                                - var distance = Number(spot.dist.calculated).toFixed(0)
-                                                | <br>
-                                                text-normal #{distance} meters
-                                            .text-muted.spot-location.text-truncate(itemprop='description')
-                                                a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
-                                                small 
-                                                    .star-rating
-                                                        +stars(spot.aspects.Overall.rating)
+                            +spotDisplay2(spot)
+                            //- .col-sm-12.spacing-2.col-md-6
+                            //-     .spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
+                            //-         .panel-image.spot-image
+                            //-             .spot-description(data-id='')
+                            //-                 .summary
+                            //-                     p
+                            //-                     a(href="/spots/#{spot.index}") #{spot.name}
+                            //-                 p.address #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
+                            //-                 .details
+                            //-                     .row
+                            //-                         each aspect, aspectTitle in spot.aspects
+                            //-                             p #{aspectTitle}: 
+                            //-                                 strong #{aspect.rating}
+                            //-             a.media-phot.media-cover(href='/spots/#{spot.index}')
+                            //-                 .spot-image-container.media-cover.text-center
+                            //-                     img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
+                            //-         .panel-body.panel-card-section
+                            //-             .media
+                            //-                 h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
+                            //-                     a.text-normal(href='/spots/#{spot.index}') #{spot.name}
+                            //-                     - var distance = Number(spot.dist.calculated).toFixed(0)
+                            //-                     | <br>
+                            //-                     text-normal #{distance} meters
+                            //-                 .text-muted.spot-location.text-truncate(itemprop='description')
+                            //-                     a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
+                            //-                     small 
+                            //-                         .star-rating
+                            //-                             +stars(spot.aspects.Overall.rating)
 
 append scripts
-    script(type='text/javascript', src='/js/maps.js')
+    script.
+        if (viewportWidth > breakpoint) {
+            document.write('<script src="/js/maps.js"><\/script>');
+        }
+        else {
+            document.body.className = document.body.className + " no-hero-map";
+        }
+    //script(type='text/javascript', src='/js/maps.js')
