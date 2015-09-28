@@ -15,6 +15,7 @@
     "serve-favicon": "~2.3.0",
     "mongodb": "~2.0.33",
     "monk": "~1.0.1",
-    "node-geocoder": "~2.12.1"
+    "node-geocoder": "~2.12.1",
+    "node-rest-client": "~1.5.1"
   }
 }
