@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var geocoder = require('node-geocoder').getGeocoder('google', 'http');
 var client = require('node-rest-client').Client;
 var serviceEndpoint = "http://ec2-52-89-65-158.us-west-2.compute.amazonaws.com:5000";
 
