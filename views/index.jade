@@ -20,7 +20,7 @@ block content
 	#discover-title.section
 		.container
 			.section-title.text-center.spacing-6.spacing-top-6
-				h1 #{title}
+				h1 #{pageTitle}
 
 	#discover-container.section
 		.container
@@ -28,21 +28,34 @@ block content
 				.col-sm-12.col-md-6.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Irvine")
 						a(href="/city/Irvine")
-							div.va-container.va-container-w.va-container-h
+							.va-container.va-container-w.va-container-h
+								.va-middle.text-center.text-contrast
+									h2
+										strong Irvine
+
 				.col-sm-12.col-md-6.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Orange")
 						a(href="/city/Orange")
-							div.va-container.va-container-w.va-container-h
+							.va-container.va-container-w.va-container-h
+								.va-middle.text-center.text-contrast
+									h2
+										strong Orange
 
 				.col-sm-12.col-md-6.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Tustin")
 						a(href="/city/Tustin")
-							div.va-container.va-container-w.va-container-h
+							.va-container.va-container-w.va-container-h
+								.va-middle.text-center.text-contrast
+									h2
+										strong Tustin
 
 				.col-sm-12.col-md-6.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Fullerton")
 						a(href="/city/Fullerton")
-							div.va-container.va-container-w.va-container-h
+							.va-container.va-container-w.va-container-h
+								.va-middle.text-center.text-contrast
+									h2
+										strong Fullerton
 
 append scripts
 	script.

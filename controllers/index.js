@@ -11,7 +11,10 @@ router.get('/', function(req, res, next) {
         var apiResJson = JSON.parse(data.toString('utf8'));
         var message = apiResJson.message;
 
-        res.render('index', { title: message});
+        res.render('index', { 
+            title : message, 
+            pageTitle : 'Around You'
+        });
     });
 });
 
@@ -23,7 +26,8 @@ router.get('/spotlist', function(req, res) {
 
         res.render('spot_list', {
             "spot_list" : spots,
-            title : 'Glance | Find your favorite Spot at a glance!'
+            title : 'Glance | Find your favorite Spot at a glance!',
+            pageTitle : 'Results'
         });
     });
 });
@@ -37,7 +41,8 @@ router.get('/city/:city', function(req, res) {
 
         res.render('spot_list', {
             "spot_list" : citySpots,
-            title : 'Glance | Find your favorite Spot at a glance!'
+            title : 'Glance | Find your favorite Spot at a glance!',
+            pageTitle : city
         });
     });
 });
