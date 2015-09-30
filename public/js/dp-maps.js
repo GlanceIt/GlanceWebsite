@@ -23,12 +23,12 @@ function initialize() {
 
 	map = new google.maps.Map(mapCanvas, mapOptions);
 
-	marker = new google.maps.Marker({
-		position: mapCenter,
-		map: map,
-		draggable: true,
-		animation: google.maps.Animation.DROP
-	});
+	// marker = new google.maps.Marker({
+	// 	position: mapCenter,
+	// 	map: map,
+	// 	draggable: true,
+	// 	animation: google.maps.Animation.DROP
+	// });
 
 	//***This grabs user location
 	// results = document.getElementById("results");

@@ -9,7 +9,7 @@ append head
         .hidden { display: none; }
 
 block content
-    .hero
+    .hero.section
         #spot-hero.spot-hero(style="background-image: url('#{spot_details.Image}'); background-size: cover; background-position: center")
         .overlay
 
@@ -17,160 +17,166 @@ block content
         ul
             li#spot-data.spot-data(data-lat='#{spot_details.Location.coordinates[1]}', data-lng='#{spot_details.Location.coordinates[0]}', data-name='#{spot_details.name}')
 
-    #dp-container
-        #details-aspects
-            .container
-                .section-title.text-center.spacing-6.spacing-top-6
-                    h1 #{spot_details.name}
-                    .star-rating.spacing-3.text-2x
-                        span.icon-alt-text #{spot_details.aspects.Overall.rating} out of 5 stars
-                        +stars(spot_details.aspects.Overall.rating)
-                    button(onclick="toggleHidden()") Toggle
-                    hr
+    #spot-title.section
+        .container
+            .section-title.text-center.spacing-6.spacing-top-6
+                h1 #{spot_details.name}
+                .star-rating.spacing-3.text-2x
+                    span.icon-alt-text #{spot_details.aspects.Overall.rating} out of 5 stars
+                    +stars(spot_details.aspects.Overall.rating)
+                button(onclick="toggleHidden()") Toggle
+                hr
 
-                #aspect-ratings.aspect-ratings
-                    .ratings-container
-                        .row.spacing-2
-                            #version1
-                                each aspect, aspectTitle in spot_details.aspects
-                                    .col-sm-12.col-md-6
-                                        .factor.text-2x.spacing-2
-                                            .row
-                                                .col-static-4
-                                                    .factor-title #{aspectTitle}
-                                                .col-static-8
-                                                    .star-rating.text-md.text-right
-                                                        span.icon-alt-text #{aspect.rating} out of 5 stars
-                                                        +stars(aspect.rating)
-                            #version2.hidden
-                                each aspect, aspectTitle in spot_details.aspects
-                                    .col-sm-12.col-md-6
-                                        .factor.text-2x.spacing-2
-                                            .row
-                                                .col-md-4
-                                                    .factor-title #{aspectTitle}
-                                                .col-md-8
-                                                    .star-rating.dp.text-md
-                                                        span.icon-alt-text #{aspect.rating} out of 5 stars
-                                                        +stars(aspect.rating)
-                            //- .col-sm-12.col-md-6
-                            //-     .factor.text-2x.spacing-2
-                            //-         .row
-                            //-             .col-md-4
-                            //-                 .factor-title Wifi
-                            //-             .col-md-8
-                            //-                 .star-rating.text-md
-                            //-                     span.icon-alt-text #{spot_details.aspects.Wifi.rating} out of 5 stars
-                            //-                     +stars(spot_details.aspects.Wifi.rating)
-                            //-     .factor.text-2x.spacing-2
-                            //-         .row
-                            //-             .col-md-4
-                            //-                 .factor-title Staff 
-                            //-             .col-md-8
-                            //-                 .star-rating.text-md
-                            //-                     span.icon-alt-text #{spot_details.aspects.Staff.rating} out of 5 stars
-                            //-                     +stars(spot_details.aspects.Staff.rating)
-
-                            //- .col-sm-12.col-md-6
-                            //-     .factor.text-2x.spacing-2
-                            //-         .row
-                            //-             .col-md-4
-                            //-                 .factor-title Coffee
-                            //-             .col-md-8
-                            //-                 .star-rating.text-md
-                            //-                     span.icon-alt-text #{spot_details.aspects.Coffee.rating} out of 5 stars
-                            //-                     +stars(spot_details.aspects.Coffee.rating)
-
-        #details-location.details-location.spacing-2
-            .container(style="position: relative;")
-                #map-canvas.panel.map-canvas
-                #hover-card.hover-card.panel
-                    p.address.text-center.spacing-top-2.text-medium #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
-
-        #details-other
-            .container
-                .details-other-container
+    #spot-aspects.section
+        .container
+            #aspect-ratings.aspect-ratings
+                .ratings-container
                     .row.spacing-2
-                        #hours.col-sm-12.col-md-6
-                            .section-title.text-center.spacing-6.spacing-top-6
-                                h2 Hours
-                            .day.text-medium.spacing-2
-                                - var today = new Date()
-                                - var day = today.getDay()
-                                .row(data-day="0", class=day == 0 ? "today" : "")
-                                    .col-static-4
-                                        .day-title Sun
-                                    .col-static-8
-                                        .day-times.text-md.text-right 5:00 am - 10:00 pm
-                                .row(data-day="1", class=day == 1 ? "today" : "")
-                                    .col-static-4
-                                        .day-title Mon
-                                    .col-static-8
-                                        .day-times.text-md.text-right 5:00 am - 10:00 pm
-                                .row(data-day="2", class=day == 2 ? "today" : "")
-                                    .col-static-4
-                                        .day-title Tue
-                                    .col-static-8
-                                        .day-times.text-md.text-right 5:00 am - 10:00 pm
-                                .row(data-day="3", class=day == 3 ? "today" : "")
-                                    .col-static-4
-                                        .day-title Wed
-                                    .col-static-8
-                                        .day-times.text-md.text-right 5:00 am - 10:00 pm
-                                .row(data-day="4", class=day == 4 ? "today" : "")
-                                    .col-static-4
-                                        .day-title Thu
-                                    .col-static-8
-                                        .day-times.text-md.text-right 5:00 am - 10:00 pm
-                                .row(data-day="5", class=day == 5 ? "today" : "")
-                                    .col-static-4
-                                        .day-title Fri
-                                    .col-static-8
-                                        .day-times.text-md.text-right 5:00 am - 10:00 pm
-                                .row(data-day="6", class=day == 6 ? "today" : "")
-                                    .col-static-4
-                                        .day-title Sat
-                                    .col-static-8
-                                        .day-times.text-md.text-right 5:00 am - 10:00 pm
+                        #version1
+                            each aspect, aspectTitle in spot_details.aspects
+                                .col-sm-12.col-md-6
+                                    .factor.text-2x.spacing-2
+                                        .row
+                                            .col-xs-4
+                                                .factor-title #{aspectTitle}
+                                            .col-xs-8
+                                                .star-rating.text-md.text-right
+                                                    span.icon-alt-text #{aspect.rating} out of 5 stars
+                                                    +stars(aspect.rating)
+                        #version2.hidden
+                            each aspect, aspectTitle in spot_details.aspects
+                                .col-sm-12.col-md-6
+                                    .factor.text-2x.spacing-2
+                                        .row
+                                            .col-md-4
+                                                .factor-title #{aspectTitle}
+                                            .col-md-8
+                                                .star-rating.dp.text-md
+                                                    span.icon-alt-text #{aspect.rating} out of 5 stars
+                                                    +stars(aspect.rating)
+                        //- .col-sm-12.col-md-6
+                        //-     .factor.text-2x.spacing-2
+                        //-         .row
+                        //-             .col-md-4
+                        //-                 .factor-title Wifi
+                        //-             .col-md-8
+                        //-                 .star-rating.text-md
+                        //-                     span.icon-alt-text #{spot_details.aspects.Wifi.rating} out of 5 stars
+                        //-                     +stars(spot_details.aspects.Wifi.rating)
+                        //-     .factor.text-2x.spacing-2
+                        //-         .row
+                        //-             .col-md-4
+                        //-                 .factor-title Staff 
+                        //-             .col-md-8
+                        //-                 .star-rating.text-md
+                        //-                     span.icon-alt-text #{spot_details.aspects.Staff.rating} out of 5 stars
+                        //-                     +stars(spot_details.aspects.Staff.rating)
 
-                        #other.col-sm-12.col-md-6
-                            .section-title.text-center.spacing-6.spacing-top-6
-                                h2 Other Details
-                            .other.text-medium.spacing-2
-                                .row
-                                    .col-static-4
-                                        .detail-title Phone
-                                    .col-static-8
-                                        .detail-value.text-right 714-472-8160
-                                .row
-                                    .col-static-4
-                                        .detail-title Social
-                                    .col-static-8
-                                        .detail-value.text-right 
-                                            ul.list-layout.list-inline
-                                                li
-                                                    a.link-normal.details-icon-container(href='https://www.facebook.com/glanceteam', target='_blank')
-                                                        span.screen-reader-only Facebook
-                                                        i.icon.details-icon.fa.fa-facebook
-                                                li
-                                                    a.link-normal.details-icon-container(href='https://twitter.com/glanceappteam', target='_blank')
-                                                        span.screen-reader-only Twitter
-                                                        i.icon.details-icon.fa.fa-twitter
-                                                li
-                                                    a.link-normal.details-icon-container(href='https://instagram.com/glanceapp/', target='_blank')
-                                                        span.screen-reader-only Instagram
-                                                        i.icon.details-icon.fa.fa-instagram
-                                .row
-                                    .col-static-4
-                                        .detail-title Website
-                                    .col-static-8
-                                        .detail-value.text-right 
-                                            a(href="http://www.glance-app.com", target="_blank") #{spot_details.name}
+                        //- .col-sm-12.col-md-6
+                        //-     .factor.text-2x.spacing-2
+                        //-         .row
+                        //-             .col-md-4
+                        //-                 .factor-title Coffee
+                        //-             .col-md-8
+                        //-                 .star-rating.text-md
+                        //-                     span.icon-alt-text #{spot_details.aspects.Coffee.rating} out of 5 stars
+                        //-                     +stars(spot_details.aspects.Coffee.rating)
 
-                    
+        //- #details-location.details-location.spacing-2
+        //-     .container(style="position: relative;")
+        //-         #map-canvas.panel.map-canvas
+        //-         #hover-card.hover-card.panel
+        //-             p.address.text-center.spacing-top-2.text-medium #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
 
-            
-            a(href="/spotlist")= "< Spot List"
+    #spot-location.section
+        .details-location.spacing-2(style="position: relative;")
+            #map-canvas.panel.map-canvas
+            .map-overlay
+            #spot-address.address-card.text-center
+                img(src="/img/icons/location-pin.png")
+                p.address.text-left.text-medium(style="display: inline-block; vertical-align: middle; margin-bottom: 0;") #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
+            //- #hover-card.hover-card.panel
+            //-     p.address.text-center.spacing-top-2.text-medium #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
+
+    #spot-other-details.section
+        .container
+            .details-other-container
+                .row.spacing-2
+                    #hours.col-sm-12.col-md-6
+                        .section-title.text-center.spacing-6.spacing-top-6
+                            h2 Hours
+                        .day.text-medium.spacing-2
+                            - var today = new Date()
+                            - var day = today.getDay()
+                            .row(data-day="0", class=day == 0 ? "today" : "")
+                                .col-xs-4
+                                    .day-title Sun
+                                .col-xs-8
+                                    .day-times.text-md.text-right 5:00 am - 10:00 pm
+                            .row(data-day="1", class=day == 1 ? "today" : "")
+                                .col-xs-4
+                                    .day-title Mon
+                                .col-xs-8
+                                    .day-times.text-md.text-right 5:00 am - 10:00 pm
+                            .row(data-day="2", class=day == 2 ? "today" : "")
+                                .col-xs-4
+                                    .day-title Tue
+                                .col-xs-8
+                                    .day-times.text-md.text-right 5:00 am - 10:00 pm
+                            .row(data-day="3", class=day == 3 ? "today" : "")
+                                .col-xs-4
+                                    .day-title Wed
+                                .col-xs-8
+                                    .day-times.text-md.text-right 5:00 am - 10:00 pm
+                            .row(data-day="4", class=day == 4 ? "today" : "")
+                                .col-xs-4
+                                    .day-title Thu
+                                .col-xs-8
+                                    .day-times.text-md.text-right 5:00 am - 10:00 pm
+                            .row(data-day="5", class=day == 5 ? "today" : "")
+                                .col-xs-4
+                                    .day-title Fri
+                                .col-xs-8
+                                    .day-times.text-md.text-right 5:00 am - 10:00 pm
+                            .row(data-day="6", class=day == 6 ? "today" : "")
+                                .col-xs-4
+                                    .day-title Sat
+                                .col-xs-8
+                                    .day-times.text-md.text-right 5:00 am - 10:00 pm
+
+                    #other.col-sm-12.col-md-6
+                        .section-title.text-center.spacing-6.spacing-top-6
+                            h2 Other Details
+                        .other.text-medium.spacing-2
+                            .row
+                                .col-xs-4
+                                    .detail-title Phone
+                                .col-xs-8
+                                    .detail-value.text-right 714-472-8160
+                            .row
+                                .col-xs-4
+                                    .detail-title Social
+                                .col-xs-8
+                                    .detail-value.text-right 
+                                        ul.list-layout.list-inline
+                                            li
+                                                a.link-normal.details-icon-container(href='https://www.facebook.com/glanceteam', target='_blank')
+                                                    span.screen-reader-only Facebook
+                                                    i.icon.details-icon.fa.fa-facebook
+                                            li
+                                                a.link-normal.details-icon-container(href='https://twitter.com/glanceappteam', target='_blank')
+                                                    span.screen-reader-only Twitter
+                                                    i.icon.details-icon.fa.fa-twitter
+                                            li
+                                                a.link-normal.details-icon-container(href='https://instagram.com/glanceapp/', target='_blank')
+                                                    span.screen-reader-only Instagram
+                                                    i.icon.details-icon.fa.fa-instagram
+                            .row
+                                .col-xs-4
+                                    .detail-title Website
+                                .col-xs-8
+                                    .detail-value.text-right 
+                                        a(href="http://www.glance-app.com", target="_blank") #{spot_details.name}
 
 append scripts
     script(type='text/javascript', src='/js/dp-maps.js')

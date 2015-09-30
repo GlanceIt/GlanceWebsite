@@ -60,7 +60,7 @@
 .spacing-top-9 { margin-top: 56.25px; }
 .spacing-top-10 { margin-top: 62.5px; }
 
-.col-1, .col-sm-1, .col-md-1, .col-lg-1, .col-2, .col-sm-2, .col-md-2, .col-lg-2, .col-3, .col-sm-3, .col-md-3, .col-lg-3, .col-4, .col-sm-4, .col-md-4, .col-lg-4, .col-5, .col-sm-5, .col-md-5, .col-lg-5, .col-6, .col-sm-6, .col-md-6, .col-lg-6, .col-7, .col-sm-7, .col-md-7, .col-lg-7, .col-8, .col-sm-8, .col-md-8, .col-lg-8, .col-9, .col-sm-9, .col-md-9, .col-lg-9, .col-10, .col-sm-10, .col-md-10, .col-lg-10, .col-11, .col-sm-11, .col-md-11, .col-lg-11, .col-12, .col-sm-12, .col-md-12, .col-lg-12 {
+/*.col-1, .col-sm-1, .col-md-1, .col-lg-1, .col-2, .col-sm-2, .col-md-2, .col-lg-2, .col-3, .col-sm-3, .col-md-3, .col-lg-3, .col-4, .col-sm-4, .col-md-4, .col-lg-4, .col-5, .col-sm-5, .col-md-5, .col-lg-5, .col-6, .col-sm-6, .col-md-6, .col-lg-6, .col-7, .col-sm-7, .col-md-7, .col-lg-7, .col-8, .col-sm-8, .col-md-8, .col-lg-8, .col-9, .col-sm-9, .col-md-9, .col-lg-9, .col-10, .col-sm-10, .col-md-10, .col-lg-10, .col-11, .col-sm-11, .col-md-11, .col-lg-11, .col-12, .col-sm-12, .col-md-12, .col-lg-12 {
 	position: relative;
 	min-height: 1px;
 	padding-left: 12.5px;
@@ -70,7 +70,7 @@
 .col-sm-12 {
 	width: 100%;
 	float: left;
-}
+}*/
 
 .image-responsive-height {
 	width: auto;
@@ -93,40 +93,46 @@
 	width: 1px;
 }
 
-.row { 
+/*.row { 
 	width: 100%; 
-	/*margin-left: -12.5px;
-	margin-right: -12.5px;*/
-}
+	margin-left: -12.5px;
+	margin-right: -12.5px;
+}*/
 .row-condensed {
 	margin-left: -6.25px;
 	margin-right: -6.25px;
 }
-.row:after, .row:before {
+
+.row-marginless {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/*.row:after, .row:before {
 	display: table;
 	content: "";
 	line-height: 0;
 	font-size: 0;
 }
-.row:after { clear: both; }
+.row:after { clear: both; }*/
 
 .clearfix:before, .clearfix:after { 
 	content: " ";
 	display: table;
 }
 
-.col-static-8 {
+/*.col-static-8, .col-sm-8 {
 	width: 66.66667%;
 	float: left;
 }
 
-.col-static-4 {
+.col-static-4, .col-sm-4 {
 	width: 33.33333%;
 	float: left;
-}
+}*/
 
 @media (min-width: 768px) {
-	.col-md-9 {
+/*	.col-md-9 {
 		width: 75%;
 		float: left;
 	}
@@ -149,5 +155,5 @@
 	.col-md-3 {
 		width: 25%;
 		float: left;
-	}
+	}*/
 }

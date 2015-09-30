@@ -1,7 +1,7 @@
 //- include ./stars.jade
 
 mixin spotDisplay(spot)
-	.col-sm-12.spacing-2.col-md-6
+	.col-sm-12.col-md-6.spacing-4
 		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
 			.panel-image.spot-image
 				.spot-description(data-id='')
@@ -32,7 +32,7 @@ mixin spotDisplay(spot)
 
 
 mixin spotDisplay2(spot)
-	.col-sm-12.spacing-2.col-md-6
+	.col-sm-12.col-md-6.spacing-4
 		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
 			.panel-image.spot-image
 				.spot-description(data-id='')
@@ -45,12 +45,31 @@ mixin spotDisplay2(spot)
 							each aspect, aspectTitle in spot.aspects
 								p #{aspectTitle}: 
 									strong #{aspect.rating}
-				a.media-photo.media-cover(href='/spots/#{spot.index}')
+				.media-photo.media-cover
 					.spot-image-container.media-cover.text-center
 						img.image-responsive-height(src='#{spot.Image}', alt='#{spot.name}')
 				.overlay
+				a(href='/spots/#{spot.index}', style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 1;")
 				.panel-body.panel-card-section.panel-absolute
 					.media(style="color: #fff;")
+						h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
+							a.text-normal(href='/spots/#{spot.index}') #{spot.name}
+							- var distance = Number(spot.dist.calculated).toFixed(0)
+							| <br>
+							.text-normal #{distance} meters
+						.text-muted.spot-location.text-truncate(itemprop='description')
+							a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
+							
+								.star-rating
+									+stars(spot.aspects.Overall.rating)
+
+mixin spotDisplay3(spot)
+	.col-sm-12.col-md-12.spacing-2
+		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
+			.row
+				.hi(style="background-image: url('#{spot.Image}'); background-size: cover; background-position: center; position: absolute; left: 0; top: 0; bottom: 0; width: 35%;")
+				.panel-card-section(style="display: inline-block; margin-left: 35%; width: 65%;")
+					.media
 						h3.h5.spot-name.text-truncate.spacing-top-1(title='#{spot.name}', itemprop='name')
 							a.text-normal(href='/spots/#{spot.index}') #{spot.name}
 							- var distance = Number(spot.dist.calculated).toFixed(0)
