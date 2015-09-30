@@ -33,7 +33,19 @@ mixin spotDisplay(spot)
 
 mixin spotDisplay2(spot)
 	.col-sm-12.col-md-6.spacing-4
-		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
+		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', 
+						data-lng='#{spot.Location.coordinates[0]}', 
+						data-name='#{spot.name}', 
+						data-url='/spots/#{spot.index}', 
+						data-user='', 
+						data-id='', 
+						data-img='#{spot.Image}', 
+						data-spot-index='#{spot.index}',
+						data-overall='#{spot.Overall.rating}',
+						data-wifi='#{spot.aspects.Wifi.rating}',
+						data-seating='#{spot.aspects.Seating.rating}',
+						data-parking='#{spot.aspects.Parking.rating}'
+						)
 			.panel-image.spot-image
 				.spot-description(data-id='')
 					.summary

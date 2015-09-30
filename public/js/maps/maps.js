@@ -3,6 +3,7 @@ var mapCanvas;
 var map;
 var mapCenter;
 var marker;
+var infoWindow;
 
 function initialize() {
 	mapCanvas = document.getElementById("map-canvas");
@@ -100,19 +101,111 @@ function setMarkers() {
 	var spots = document.getElementsByClassName('spot-data');
 
 	for (var i = 0; i < spots.length; i++) {
-		var locationName = spots.item(i).dataset.name;
+		infoWindow = new google.maps.InfoWindow({
+			content: "Preparing..."
+		});
+
+		var spotName = spots.item(i).dataset.name;
 		var spotUrl = spots.item(i).dataset.url;
+		var spotImage = spots.item(i).dataset.img;
+		var overallRating = spots.item(i).dataset.overall;
+		var wifiRating = spots.item(i).dataset.wifi;
+		var seatingRating = spots.item(i).dataset.seating;
+		var parkingRating = spots.item(i).dataset.parking;
+		
+		var contentString = '<div id="content">' +
+			'<div id="spot-image" class="spacing-1" style="height: 100px; width: 200px; position: relative;">' +
+			'<div id="spot-image-hero" class="spot-hero" style="background-image: url(' + spotImage + '); background-size: cover; background-position: center;">' +
+			'</div>' +
+			'</div>' +
+			
+			'<div class="text-center spacing-1 spacing-top-0">' + 
+			'<h4 class="spacing-0 spacing-top-0">' + spotName + '</h4>' +
+			'<small>' +
+			'<div class="star-rating spacing-1">' +
+			drawStars(overallRating) +
+			'</div>' +
+			'</small>' +
+			'<hr class="spacing-top-0 spacing-2">' + 
+			'</div>' +
+
+			'<div id="aspects">' +
+
+			'<div id="aspect-wifi>' +
+			'<div class="spacing-0"><strong>Wifi</strong></div>' +
+			'<div class="star-rating spacing-1 text-2x">' +
+			drawStars(wifiRating) +
+			'</div>' +
+			'</div>' +
+
+			'<div id="aspect-wifi>' +
+			'<div class="spacing-0"><strong>Seating</strong></div>' +
+			'<div class="star-rating spacing-1 text-2x">' +
+			drawStars(seatingRating) +
+			'</div>' +
+			'</div>' +
+
+			'<div id="aspect-wifi>' +
+			'<div class="spacing-0"><strong>Parking</strong></div>' +
+			'<div class="star-rating spacing-1 text-2x">' +
+			drawStars(parkingRating) +
+			'</div>' +
+			'</div>' +
+
+			'</div>' +
+
+			'</div>'
+			;
+
 		var spotMarker = new google.maps.Marker({
 			// position: new google.maps.LatLng(spots.item(i).dataset.lat, spots.item(i).dataset.lng),
 			position: {lat: parseFloat(spots.item(i).dataset.lat), lng: parseFloat(spots.item(i).dataset.lng)},
 			map: map,
 			icon: '../img/icons/spot-location.png',
-			title: locationName,
+			title: spotName,
 			draggable: false,
-			animation: google.maps.Animation.DROP
+			animation: google.maps.Animation.DROP,
+			url: spotUrl,
+			html: contentString
 		});
 		spotMarker.addListener('click', function() {
-			window.open(spotUrl, "_self");
+			//window.open(this.url, "_self");
+			infoWindow.setContent(this.html);
+			console.log(this.html);
+			infoWindow.open(map, this);
 		});
 	}
+}
+
+function drawStars(overallRating) {
+	var wholeStars = Math.floor(overallRating);
+	var remainder = overallRating % 1;
+	var hasHalfStar = false;
+	var starHTML = "";
+
+	if (remainder > 0 && remainder < 0.3) {
+		hasHalfStar = false;
+	}
+	else if (remainder >= 0.3 && remainder <= 0.7) {
+		hasHalfStar = true;
+	}
+	else if (remainder > 0.7) {
+		hasHalfStar = false;
+		wholeStars++;
+	}
+
+	for (var counter = 0; counter < 5; counter++) {
+		if (counter < wholeStars) {
+			starHTML += '<i class="icon fa fa-star icon-glance"></i>';
+		}
+		else if (hasHalfStar) {
+			starHTML += '<i class="icon fa fa-star-half-o icon-glance"></i>';
+			hasHalfStar = false;
+		}
+		else {
+			starHTML += '<i class="icon fa fa-star-o icon-glance" style="opacity: 0.5;"></i>';
+		}
+	}
+
+	return starHTML;
 }
