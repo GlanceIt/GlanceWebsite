@@ -28,7 +28,7 @@ mixin spotDisplay(spot)
 						a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
 						small 
 							.star-rating
-								+stars(spot.aspects.Overall.rating)
+								+stars(spot.Overall.rating)
 
 
 mixin spotDisplay2(spot)
@@ -61,7 +61,7 @@ mixin spotDisplay2(spot)
 							a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
 							
 								.star-rating
-									+stars(spot.aspects.Overall.rating)
+									+stars(spot.Overall.rating)
 
 mixin spotDisplay3(spot)
 	.col-sm-12.col-md-12.spacing-2
@@ -79,4 +79,4 @@ mixin spotDisplay3(spot)
 							a.text-normal.link-reset(href='/spots/#{spot.index}') #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
 							small 
 								.star-rating
-									+stars(spot.aspects.Overall.rating)
+									+stars(spot.Overall.rating)

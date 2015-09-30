@@ -5,8 +5,6 @@ include ./components/stars.jade
 append head
     // Google maps
     script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js')
-    style.
-        .hidden { display: none; }
 
 block content
     .hero.section
@@ -20,10 +18,10 @@ block content
     #spot-title.section
         .container
             .section-title.text-center.spacing-6.spacing-top-6
-                h1 #{spot_details.name}
+                h1.spacing-1 #{spot_details.name}
                 .star-rating.spacing-3.text-2x
-                    span.icon-alt-text #{spot_details.aspects.Overall.rating} out of 5 stars
-                    +stars(spot_details.aspects.Overall.rating)
+                    span.icon-alt-text #{spot_details.Overall.rating} out of 5 stars
+                    +stars(spot_details.Overall.rating)
                 button(onclick="toggleHidden()") Toggle
                 hr
 
@@ -54,39 +52,6 @@ block content
                                                 .star-rating.dp.text-md
                                                     span.icon-alt-text #{aspect.rating} out of 5 stars
                                                     +stars(aspect.rating)
-                        //- .col-sm-12.col-md-6
-                        //-     .factor.text-2x.spacing-2
-                        //-         .row
-                        //-             .col-md-4
-                        //-                 .factor-title Wifi
-                        //-             .col-md-8
-                        //-                 .star-rating.text-md
-                        //-                     span.icon-alt-text #{spot_details.aspects.Wifi.rating} out of 5 stars
-                        //-                     +stars(spot_details.aspects.Wifi.rating)
-                        //-     .factor.text-2x.spacing-2
-                        //-         .row
-                        //-             .col-md-4
-                        //-                 .factor-title Staff 
-                        //-             .col-md-8
-                        //-                 .star-rating.text-md
-                        //-                     span.icon-alt-text #{spot_details.aspects.Staff.rating} out of 5 stars
-                        //-                     +stars(spot_details.aspects.Staff.rating)
-
-                        //- .col-sm-12.col-md-6
-                        //-     .factor.text-2x.spacing-2
-                        //-         .row
-                        //-             .col-md-4
-                        //-                 .factor-title Coffee
-                        //-             .col-md-8
-                        //-                 .star-rating.text-md
-                        //-                     span.icon-alt-text #{spot_details.aspects.Coffee.rating} out of 5 stars
-                        //-                     +stars(spot_details.aspects.Coffee.rating)
-
-        //- #details-location.details-location.spacing-2
-        //-     .container(style="position: relative;")
-        //-         #map-canvas.panel.map-canvas
-        //-         #hover-card.hover-card.panel
-        //-             p.address.text-center.spacing-top-2.text-medium #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
 
     #spot-location.section
         .details-location.spacing-2(style="position: relative;")
@@ -95,8 +60,6 @@ block content
             #spot-address.address-card.text-center
                 img(src="/img/icons/location-pin.png")
                 p.address.text-left.text-medium(style="display: inline-block; vertical-align: middle; margin-bottom: 0;") #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
-            //- #hover-card.hover-card.panel
-            //-     p.address.text-center.spacing-top-2.text-medium #{spot_details.address.Street} <br> #{spot_details.address.City}, #{spot_details.address.State}, #{spot_details.address.Zip}
 
     #spot-other-details.section
         .container
