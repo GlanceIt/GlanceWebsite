@@ -25,33 +25,33 @@ block content
 	#discover-container.section
 		.container
 			.row
-				.col-sm-12.col-md-6.spacing-4
+				.col-sm-12.col-md-6.col-lg-4.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Irvine")
-						a(href="/city/Irvine")
+						a.link-reset(href="/city/Irvine")
 							.va-container.va-container-w.va-container-h
 								.va-middle.text-center.text-contrast
 									h2
 										strong Irvine
 
-				.col-sm-12.col-md-6.spacing-4
+				.col-sm-12.col-md-6.col-lg-4.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Orange")
-						a(href="/city/Orange")
+						a.link-reset(href="/city/Orange")
 							.va-container.va-container-w.va-container-h
 								.va-middle.text-center.text-contrast
 									h2
 										strong Orange
 
-				.col-sm-12.col-md-6.spacing-4
+				.col-sm-12.col-md-6.col-lg-4.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Tustin")
-						a(href="/city/Tustin")
+						a.link-reset(href="/city/Tustin")
 							.va-container.va-container-w.va-container-h
 								.va-middle.text-center.text-contrast
 									h2
 										strong Tustin
 
-				.col-sm-12.col-md-6.spacing-4
+				.col-sm-12.col-md-6.col-lg-4.spacing-4
 					.city.city-card.city-data(data-lat="", data-lng="", data-city="Fullerton")
-						a(href="/city/Fullerton")
+						a.link-reset(href="/city/Fullerton")
 							.va-container.va-container-w.va-container-h
 								.va-middle.text-center.text-contrast
 									h2
@@ -60,7 +60,7 @@ block content
 append scripts
 	script.
 		if (viewportWidth > breakpoint) {
-			document.write('<script src="/js/main-maps.js"><\/script>');
+			document.write('<script src="/js/maps/main-maps.js"><\/script>');
 		}
 		else {
 			document.body.className = document.body.className + " no-hero-map";
