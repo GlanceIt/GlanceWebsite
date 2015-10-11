@@ -1,0 +1,52 @@
+//- include ./stars.jade
+
+//- Display: Wifi.............Stars (2 columns)
+mixin aspectRating(aspectTitle, aspect)
+	.col-sm-12.col-md-6
+		.factor.text-2x.spacing-2
+			.row
+				.col-xs-4
+					.factor-title #{aspectTitle}
+				.col-xs-8
+					.star-rating.text-md.text-right
+						span.icon-alt-text #{aspect.rating} out of 5 stars
+						+stars(aspect.rating)
+
+//- Display: Wifi...............Stars
+//- Display: Wifi
+//-				Stars
+mixin aspectRating_v2(aspectTitle, aspect)
+	.col-sm-12.col-md-6
+		.factor.text-2x.spacing-2
+			.row
+				.col-md-4
+					.factor-title #{aspectTitle}
+				.col-md-8
+					.star-rating.dp.text-md
+						span.icon-alt-text #{aspect.rating} out of 5 stars
+						+stars(aspect.rating)
+
+//- Display: Wifi.............Stars (3 columns)
+mixin aspectRating_v3(aspectTitle, aspect)
+	.col-sm-12.col-md-4
+		.factor.text-2x.spacing-2
+			.row
+				.col-xs-4
+					.factor-title #{aspectTitle}
+				.col-xs-8
+					.star-rating.text-md.text-right
+						span.icon-alt-text #{aspect.rating} out of 5 stars
+						+stars(aspect.rating)
+
+//- Display: Wifi
+//-			Stars
+mixin aspectRating_v4(aspectTitle, aspect)
+	.col-sm-12.col-md-4
+		.factor.text-2x.spacing-2
+			.row
+				.col-xs-12
+					.factor-title #{aspectTitle}
+				.col-xs-12
+					.star-rating.text-medium.text-left
+						span.icon-alt-text #{aspect.rating} out of 5 stars
+						+stars(aspect.rating)

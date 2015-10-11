@@ -16,6 +16,7 @@ function initialize() {
 	    zoom: 12,
 	    backgroundColor: "#f5a623",
 	    disableDefaultUI: true,
+	    zoomControl:true,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP,
 	};
 
@@ -99,6 +100,7 @@ function setMarkers() {
 	// });
 
 	var spots = document.getElementsByClassName('spot-data');
+	var bounds = new google.maps.LatLngBounds();
 
 	for (var i = 0; i < spots.length; i++) {
 		infoWindow = new google.maps.InfoWindow({
@@ -174,7 +176,22 @@ function setMarkers() {
 			console.log(this.html);
 			infoWindow.open(map, this);
 		});
+
+		bounds.extend(spotMarker.position);
 	}
+
+	// Auto Center map to fit bounds of markers
+	map.fitBounds(bounds);
+}
+
+function autoCenterMap(spotMarkers) {
+	var bounds = new google.maps.LatLngBounds();
+
+	spotMarkers.forEach(function(index, spotMarker) {
+		bounds.extend(spotMarker.position);
+	});
+
+	map.fitBounds(bounds);
 }
 
 function drawStars(overallRating) {

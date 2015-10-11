@@ -32,8 +32,11 @@ block content
             .search-results
                 .listing-container
                     .row
-                        each spot, i in spot_list
-                            +spotDisplay2(spot)
+                        if spot_list
+                            each spot, i in spot_list
+                                +spotDisplay_v2(spot)
+                        else
+                            p Sorry something is wrong
 
 append scripts
     script.

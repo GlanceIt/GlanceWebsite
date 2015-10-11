@@ -144,8 +144,10 @@ a.logo-link:hover { color: #f5a623; }
 .container, .container-responsive {
 	width: auto;
 	margin: 0 auto;
-	padding-left: 12.5px;
-	padding-right: 12.5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	/*padding-left: 12.5px;
+	padding-right: 12.5px;*/
 }
 
 .container:before, .container-responsive:before, .container:after, .container-responsive:after {

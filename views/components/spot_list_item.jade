@@ -1,5 +1,7 @@
 //- include ./stars.jade
 
+//- Display: Image
+//- 		Info
 mixin spotDisplay(spot)
 	.col-sm-12.col-md-6.spacing-4
 		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
@@ -30,8 +32,8 @@ mixin spotDisplay(spot)
 							.star-rating
 								+stars(spot.Overall.rating)
 
-
-mixin spotDisplay2(spot)
+//- Display: Info inside image position absolute at bottom
+mixin spotDisplay_v2(spot)
 	.col-sm-12.col-md-6.spacing-4
 		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', 
 						data-lng='#{spot.Location.coordinates[0]}', 
@@ -47,9 +49,8 @@ mixin spotDisplay2(spot)
 						data-parking='#{spot.aspects.Parking.rating}'
 						)
 			.panel-image.spot-image
-				.spot-description(data-id='')
+				.spot-description.container-fluid(data-id='')
 					.summary
-						p
 						a(href="/spots/#{spot.index}") #{spot.name}
 					p.address #{spot.address.Street}, #{spot.address.City}, #{spot.address.State}, #{spot.address.Zip}
 					.details
@@ -75,7 +76,8 @@ mixin spotDisplay2(spot)
 								.star-rating
 									+stars(spot.Overall.rating)
 
-mixin spotDisplay3(spot)
+//- Display: Image | info
+mixin spotDisplay_v3(spot)
 	.col-sm-12.col-md-12.spacing-2
 		.spot.spot-data(data-lat='#{spot.Location.coordinates[1]}', data-lng='#{spot.Location.coordinates[0]}', data-name='#{spot.name}', data-url='/spots/#{spot.index}', data-user='', data-id='', data-img='#{spot.Image}', data-spot-index='#{spot.index}')
 			.row

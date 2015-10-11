@@ -15,6 +15,7 @@ function initialize() {
 	    zoom: 12,
 	    backgroundColor: "#f5a623",
 	    disableDefaultUI: true,
+	    zoomControl:true,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP,
 	};
 

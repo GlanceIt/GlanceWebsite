@@ -1,6 +1,7 @@
 extends ./layouts/layout
 
 include ./components/stars.jade
+include ./components/aspect_rating.jade
 
 append head
     // Google maps
@@ -22,7 +23,6 @@ block content
                 .star-rating.spacing-3.text-2x
                     span.icon-alt-text #{spot_details.Overall.rating} out of 5 stars
                     +stars(spot_details.Overall.rating)
-                button(onclick="toggleHidden()") Toggle
                 hr
 
     #spot-aspects.section
@@ -30,28 +30,8 @@ block content
             #aspect-ratings.aspect-ratings
                 .ratings-container
                     .row.spacing-2
-                        #version1
-                            each aspect, aspectTitle in spot_details.aspects
-                                .col-sm-12.col-md-6
-                                    .factor.text-2x.spacing-2
-                                        .row
-                                            .col-xs-4
-                                                .factor-title #{aspectTitle}
-                                            .col-xs-8
-                                                .star-rating.text-md.text-right
-                                                    span.icon-alt-text #{aspect.rating} out of 5 stars
-                                                    +stars(aspect.rating)
-                        #version2.hidden
-                            each aspect, aspectTitle in spot_details.aspects
-                                .col-sm-12.col-md-6
-                                    .factor.text-2x.spacing-2
-                                        .row
-                                            .col-md-4
-                                                .factor-title #{aspectTitle}
-                                            .col-md-8
-                                                .star-rating.dp.text-md
-                                                    span.icon-alt-text #{aspect.rating} out of 5 stars
-                                                    +stars(aspect.rating)
+                        each aspect, aspectTitle in spot_details.aspects
+                            +aspectRating(aspectTitle, aspect)
 
     #spot-location.section
         .details-location.spacing-2(style="position: relative;")
@@ -143,14 +123,3 @@ block content
 
 append scripts
     script(type='text/javascript', src='/js/maps/dp-maps.js')
-    script.
-        function toggleHidden() {
-            if ($('#version1').hasClass('hidden')) {
-                $('#version1').removeClass('hidden');
-                $('#version2').addClass('hidden');
-            }
-            else {
-                $('#version1').addClass('hidden');
-                $('#version2').removeClass('hidden');
-            } 
-        }
