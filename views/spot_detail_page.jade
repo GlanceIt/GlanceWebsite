@@ -95,7 +95,8 @@ block content
                                 .col-xs-4
                                     .detail-title Phone
                                 .col-xs-8
-                                    .detail-value.text-right 714-472-8160
+                                    .detail-value.text-right 
+                                        a(href="tel:#{spot_details.Contacts.Phone}", target="_blank") #{spot_details.Contacts.Phone}
                             .row
                                 .col-xs-4
                                     .detail-title Social
@@ -103,15 +104,15 @@ block content
                                     .detail-value.text-right 
                                         ul.list-layout.list-inline
                                             li
-                                                a.link-normal.details-icon-container(href='https://www.facebook.com/glanceteam', target='_blank')
+                                                a.link-normal.details-icon-container(href='http://#{spot_details.Contacts.Facebook}', target='_blank')
                                                     span.screen-reader-only Facebook
                                                     i.icon.details-icon.fa.fa-facebook
                                             li
-                                                a.link-normal.details-icon-container(href='https://twitter.com/glanceappteam', target='_blank')
+                                                a.link-normal.details-icon-container(href='http://#{spot_details.Contacts.Twitter}', target='_blank')
                                                     span.screen-reader-only Twitter
                                                     i.icon.details-icon.fa.fa-twitter
                                             li
-                                                a.link-normal.details-icon-container(href='https://instagram.com/glanceapp/', target='_blank')
+                                                a.link-normal.details-icon-container(href='http://#{spot_details.Contacts.Instagram}', target='_blank')
                                                     span.screen-reader-only Instagram
                                                     i.icon.details-icon.fa.fa-instagram
                             .row
@@ -119,7 +120,7 @@ block content
                                     .detail-title Website
                                 .col-xs-8
                                     .detail-value.text-right 
-                                        a(href="http://www.glance-app.com", target="_blank") #{spot_details.name}
+                                        a(href="http://#{spot_details.Contacts.Website}", target="_blank") #{spot_details.name}
 
 append scripts
     script(type='text/javascript', src='/js/maps/dp-maps.js')
